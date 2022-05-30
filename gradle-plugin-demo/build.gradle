@@ -1,0 +1,39 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'pers.scathon.gradle.plugin'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+wrapper {
+    gradleVersion = "6.7"
+}
+
+dependencies {
+    compileOnly gradleApi()
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+gradlePlugin {
+    plugins {
+        helloPlugin {
+            id = "HelloPlugin"
+            implementationClass = "pers.scathon.gradle.plugin.HelloPlugin"
+        }
+        goodbyePlugin {
+            id = "GoodbyePlugin"
+            implementationClass = "pers.scathon.gradle.plugin.GoodbyePlugin"
+        }
+
+    }
+}
